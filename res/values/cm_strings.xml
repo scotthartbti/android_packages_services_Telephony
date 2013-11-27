@@ -46,7 +46,6 @@
     <string name="call_notif_callconnectedect">Call connected through explicit call transfer</string>
 
     <!-- Advanced Settings -->
-    <string name="advanced_setting">Advanced Settings</string>
     <string name="incall_vibration">In-call vibration</string>
     <string name="vibrate_outgoing">Vibrate on answer</string>
     <string name="vibrate_call_waiting">Vibrate on call waiting</string>
@@ -68,4 +67,8 @@
     <string name="blacklist_notification_unknown_number">Blocked unknown number %s</string>
     <string name="blacklist_notification_multiple"><xliff:g id="count">%d</xliff:g> calls were blocked</string>
     <string name="unblock_number">Unblock</string>
+
+    <!-- Sprint MWI Quirk: Phantom message wait indicator workaround -->
+    <string name="mwi_notification_title">Message wait indicator</string>
+    <string name="mwi_notification_summary">Show message wait indicator voicemail notifications</string>
 </resources>
