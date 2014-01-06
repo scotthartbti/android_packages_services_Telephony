@@ -20,4 +20,8 @@
     <string name="speaker_proximity">Speaker Proximity</string>
     <string name="speaker_proximity_summary">Use proximity during call to activate the speaker</string>
 
+    <string name="battery_mode">Battery saving mode</string>
+    <!-- Mobile network settings screen, setting summary text when check box is selected -->
+    <string name="battery_mode_label">Set network to 2G when device is locked</string>
+
 </resources>
