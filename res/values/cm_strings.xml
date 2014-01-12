@@ -88,6 +88,15 @@
     <string name="perm_change_mobile_network">change network mode (2G/3G)</string>
     <string name="perm_change_mobile_network_desc">Allows the app to change between 2G data and 3G data at any time. 3G is faster, but consumes more battery and may cause additional cost.</string>
 
+    <string name="personal_category">Personal settings</string>
+
+    <!-- Mobile network settings screen, setting check box name -->
+    <string name="national_roaming">National data roaming</string>
+    <!-- Mobile network settings screen, setting summary text when check box is selected -->
+    <string name="national_roaming_enable">Connect to data services when nationally roaming</string>
+    <!-- Mobile network settings screen, setting summary text when check box is clear -->
+    <string name="national_roaming_disable">Do not connect to data services when nationally roaming</string>
+
     <!-- Setting title for dialpad key padding. -->
     <string name="dialkey_padding_title">Dialpad key padding</string>
 
