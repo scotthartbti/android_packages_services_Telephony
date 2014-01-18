@@ -33,11 +33,9 @@ import android.os.Process;
 import android.os.ServiceManager;
 import android.provider.Settings;
 import android.os.UserHandle;
-import android.provider.Settings;
 import android.telephony.NeighboringCellInfo;
 import android.telephony.CellInfo;
 import android.telephony.ServiceState;
-import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -48,7 +46,6 @@ import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.CommandException;
 import com.android.internal.telephony.PhoneConstants;
-import com.android.internal.telephony.RILConstants;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -68,9 +65,8 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     private static final int CMD_ANSWER_RINGING_CALL = 4;
     private static final int CMD_END_CALL = 5;  // not used yet
     private static final int CMD_SILENCE_RINGER = 6;
-
-    private static final int MESSAGE_GET_PREFERRED_NETWORK_TYPE = 7;
-    private static final int MESSAGE_SET_PREFERRED_NETWORK_TYPE = 8;
+    private static final int CMD_TOGGLE_LTE = 7; // not used yet
+    private static final int CMD_TOGGLE_2G = 8; // used in screen action implementation
 
     /** The singleton instance. */
     private static PhoneInterfaceManager sInstance;
@@ -304,58 +300,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         mApp.startActivity(intent);
     }
 
-    public int getPreferredNetworkMode() {
-        int preferredNetworkMode = RILConstants.PREFERRED_NETWORK_MODE;
-        if (TelephonyManager.getLteOnCdmaModeStatic() == PhoneConstants.LTE_ON_CDMA_TRUE) {
-            preferredNetworkMode = Phone.NT_MODE_GLOBAL;
-        }
-        int network = Settings.Global.getInt(mPhone.getContext().getContentResolver(),
-                Settings.Global.PREFERRED_NETWORK_MODE, preferredNetworkMode);
-        return network;
-    }
-
-    public int getLteState() {
-        int lte = 0;
-        switch(getPreferredNetworkMode()) {
-            case Phone.NT_MODE_GLOBAL:
-            case Phone.NT_MODE_LTE_CDMA_AND_EVDO:
-            case Phone.NT_MODE_LTE_GSM_WCDMA:
-            case Phone.NT_MODE_LTE_CMDA_EVDO_GSM_WCDMA:
-            case Phone.NT_MODE_LTE_ONLY:
-            case Phone.NT_MODE_LTE_WCDMA:
-                lte = 1;
-                break;
-        }
-	return lte;
-    }
-
-    public void toggleLTE() {
-        int network = getPreferredNetworkMode();
-        switch (network) {
-	    case Phone.NT_MODE_WCDMA_PREF:
-                network = Phone.NT_MODE_LTE_GSM_WCDMA;
-                break;
-	    case Phone.NT_MODE_LTE_GSM_WCDMA:
-                network = Phone.NT_MODE_WCDMA_PREF;
-                break;
-	    case Phone.NT_MODE_GSM_UMTS:
-                network = Phone.NT_MODE_GLOBAL;
-                break;
-	    case Phone.NT_MODE_GLOBAL:
-                network = Phone.NT_MODE_GSM_UMTS;
-                break;
-	    case Phone.NT_MODE_CDMA:
-                network = Phone.NT_MODE_LTE_CDMA_AND_EVDO;
-                break;
-	    case Phone.NT_MODE_LTE_CDMA_AND_EVDO:
-                network = Phone.NT_MODE_CDMA;
-                break;
-        }
-	Settings.Global.putInt(mPhone.getContext().getContentResolver(),
-                        android.provider.Settings.Global.PREFERRED_NETWORK_MODE,
-                        network);
-	mPhone.setPreferredNetworkType(network, mMainThreadHandler
-                        .obtainMessage(MESSAGE_SET_PREFERRED_NETWORK_TYPE));
+    public void toggleLTE(boolean on) {
         return;
     }
 
