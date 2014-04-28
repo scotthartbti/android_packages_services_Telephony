@@ -127,4 +127,15 @@
     <string name="glow_bg_trans">Glowpad transparency</string>
     <string name="glow_bg_trans_summary">Make glowpad background transparent during incoming call so entire contact picture is visible</string>
 
+    <!-- TD-SCDMA uses a variation of the GSM combos -->
+    <string-array name="enabled_networks_tdscdma_values" translatable="false">
+        <item>"20"</item>
+        <item>"18"</item>
+        <item>"1"</item>
+    </string-array>
+    <string-array name="enabled_networks_tdscdma_except_lte_values" translatable="false">
+        <item>"18"</item>
+        <item>"1"</item>
+    </string-array>
+
 </resources>
