@@ -72,6 +72,10 @@
     <string name="blacklist_notification_list_private">Private</string>
     <string name="unblock_number">Unblock</string>
 
+    <!-- Pulse torch with incoming call -->
+    <string name="torch_incoming_title">Pulse torch on incoming call</string>
+    <string name="torch_incoming_seekbar_title">Torch pulse rate</string>
+
     <!-- Sprint MWI Quirk: Phantom message wait indicator workaround -->
     <string name="mwi_notification_title">Message wait indicator</string>
     <string name="mwi_notification_summary">Show message wait indicator voicemail notifications</string>
