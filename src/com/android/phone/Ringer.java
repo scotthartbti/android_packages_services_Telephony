@@ -39,7 +39,7 @@ import android.util.Log;
 
 import com.android.internal.util.beanstalk.DeviceUtils;
 import com.android.internal.util.beanstalk.QuietHoursHelper;
-import com.android.internal.util.beanstalk.TorchConstants;
+import com.android.internal.util.cm.TorchConstants;
 import com.android.internal.telephony.Phone;
 /**
  * Ringer manager for the Phone app.
