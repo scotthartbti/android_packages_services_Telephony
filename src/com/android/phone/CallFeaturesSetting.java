@@ -219,6 +219,8 @@ public class CallFeaturesSetting extends PreferenceActivity
             "button_choose_people_lookup_provider";
     private static final String BUTTON_CHOOSE_REVERSE_LOOKUP_PROVIDER =
             "button_choose_reverse_lookup_provider";
+    private static final String BUTTON_DETAILED_INCALL_INFO_KEY =
+            "button_detailed_incall_info";
 
     private Intent mContactListIntent;
 
@@ -324,6 +326,7 @@ public class CallFeaturesSetting extends PreferenceActivity
     private ListPreference mChooseForwardLookupProvider;
     private ListPreference mChoosePeopleLookupProvider;
     private ListPreference mChooseReverseLookupProvider;
+    private CheckBoxPreference mDetailedIncallInfo;
 
     private class VoiceMailProvider {
         public VoiceMailProvider(String name, Intent intent) {
@@ -597,6 +600,10 @@ public class CallFeaturesSetting extends PreferenceActivity
         } else if (preference == mCallEndSound){
             Settings.System.putInt(getContentResolver(), Settings.System.CALL_END_SOUND,
                     mCallEndSound.isChecked() ? 1 : 0);
+            return true;
+        } else if (preference == mDetailedIncallInfo){
+            Settings.AOKP.putInt(getContentResolver(), Settings.AOKP.DETAILED_INCALL_INFO,
+                    mDetailedIncallInfo.isChecked() ? 1 : 0);
             return true;
         }
         return false;
@@ -1832,6 +1839,10 @@ public class CallFeaturesSetting extends PreferenceActivity
         mChooseReverseLookupProvider.setOnPreferenceChangeListener(this);
 
         restoreLookupProviders();
+
+        mDetailedIncallInfo = (CheckBoxPreference) findPreference(BUTTON_DETAILED_INCALL_INFO_KEY);
+        mDetailedIncallInfo.setChecked(Settings.AOKP.getInt(getContentResolver(),
+                Settings.AOKP.DETAILED_INCALL_INFO, 0) != 0 ? true : false);
 
         // create intent to bring up contact list
         mContactListIntent = new Intent(Intent.ACTION_GET_CONTENT);
