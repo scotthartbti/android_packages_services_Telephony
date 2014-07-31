@@ -602,7 +602,7 @@ public class CallFeaturesSetting extends PreferenceActivity
                     mCallEndSound.isChecked() ? 1 : 0);
             return true;
         } else if (preference == mDetailedIncallInfo){
-            Settings.AOKP.putInt(getContentResolver(), Settings.AOKP.DETAILED_INCALL_INFO,
+            Settings.System.putInt(getContentResolver(), Settings.System.DETAILED_INCALL_INFO,
                     mDetailedIncallInfo.isChecked() ? 1 : 0);
             return true;
         }
@@ -1841,8 +1841,8 @@ public class CallFeaturesSetting extends PreferenceActivity
         restoreLookupProviders();
 
         mDetailedIncallInfo = (CheckBoxPreference) findPreference(BUTTON_DETAILED_INCALL_INFO_KEY);
-        mDetailedIncallInfo.setChecked(Settings.AOKP.getInt(getContentResolver(),
-                Settings.AOKP.DETAILED_INCALL_INFO, 0) != 0 ? true : false);
+        mDetailedIncallInfo.setChecked(Settings.System.getInt(getContentResolver(),
+                Settings.System.DETAILED_INCALL_INFO, 0) != 0 ? true : false);
 
         // create intent to bring up contact list
         mContactListIntent = new Intent(Intent.ACTION_GET_CONTENT);
