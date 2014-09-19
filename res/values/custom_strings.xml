@@ -17,8 +17,6 @@
  -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="non_intrusive_incall_title">Non intrusive</string>
-    <string name="non_intrusive_incall_summary">Use non intrusive dialog for incoming calls</string>
 
     <!-- Smart Phone Call -->
     <string name="smart_phone_call_title">Smart phone call</string>

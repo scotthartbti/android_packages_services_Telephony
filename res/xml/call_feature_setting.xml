@@ -312,11 +312,4 @@
         android:persistent="false"
         android:defaultValue="false" />
 
-    <CheckBoxPreference
-        android:key="button_non_intrusive_incall"
-        android:title="@string/non_intrusive_incall_title"
-        android:summary="@string/non_intrusive_incall_summary"
-        android:persistent="false"
-        android:defaultValue="true" />
-
 </PreferenceScreen>
