@@ -113,6 +113,8 @@ public class CallFeaturesSetting extends PreferenceActivity
     private static final String PHONE_ACCOUNT_SETTINGS_KEY =
             "phone_account_settings_preference_screen";
 
+    private static final String USE_INTRUSIVE_CALL_KEY = "use_intrusive_call";
+
     private static final String ENABLE_VIDEO_CALLING_KEY = "button_enable_video_calling";
 
     private static final String BUTTON_PROXIMITY_KEY   = "button_proximity_key";
@@ -133,6 +135,7 @@ public class CallFeaturesSetting extends PreferenceActivity
     private SwitchPreference mProxSpeaker;
     private SlimSeekBarPreference mProxSpeakerDelay;
     private SwitchPreference mProxSpeakerIncallOnly;
+    private SwitchPreference mUseIntrusiveCall;
 
     /*
      * Click Listeners, handle click based on objects attached to UI.
@@ -205,6 +208,10 @@ public class CallFeaturesSetting extends PreferenceActivity
             int delay = Integer.valueOf((String) objValue);
             Settings.System.putInt(getContentResolver(),
                     Settings.System.PROXIMITY_AUTO_SPEAKER_DELAY, delay);
+        } else if (preference == mUseIntrusiveCall) {
+            final boolean val = (Boolean) objValue;
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.USE_INTRUSIVE_CALL, val ? 1 : 0);
         }
 
         // Always let the preference setting proceed.
@@ -281,6 +288,13 @@ public class CallFeaturesSetting extends PreferenceActivity
             mProxSpeakerDelay.minimumValue(100);
             mProxSpeakerDelay.multiplyValue(100);
             mProxSpeakerDelay.setOnPreferenceChangeListener(this);
+        }
+
+        mUseIntrusiveCall = (SwitchPreference) findPreference(USE_INTRUSIVE_CALL_KEY);
+        if (mUseIntrusiveCall != null) {
+            mUseIntrusiveCall.setChecked(Settings.System.getInt(getContentResolver(),
+                Settings.System.USE_INTRUSIVE_CALL, 0) != 0);
+            mUseIntrusiveCall.setOnPreferenceChangeListener(this);
         }
 
         PersistableBundle carrierConfig =
